@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>참빛북클럽 서비스 사용 가이드</title>
+  <style>
+    :root{
+      --ink:#1f2937;
+      --muted:#6b7280;
+      --line:#e5e7eb;
+      --soft:#f6f8fb;
+      --panel:#ffffff;
+      --brand:#d92c4b;
+      --brand-dark:#b91c3a;
+      --blue:#315fd5;
+      --blue-soft:#eef4ff;
+      --green:#059669;
+      --shadow:0 18px 45px rgba(15,23,42,.08);
+      --radius:8px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;color:var(--ink);background:#fff;font-family:Pretendard,"Noto Sans KR","Malgun Gothic",Arial,sans-serif;line-height:1.72;letter-spacing:0}
+    a{color:inherit;text-decoration:none}
+    button{font:inherit}
+    .topbar{height:68px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 clamp(20px,5vw,72px);background:rgba(255,255,255,.96);position:sticky;top:0;z-index:20;backdrop-filter:saturate(140%) blur(8px)}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:900;font-size:18px;letter-spacing:-.2px}.brand-mark{width:28px;height:28px;border-radius:7px;background:var(--brand);color:#fff;display:grid;place-items:center;font-size:12px;font-weight:900}.topbar small{color:var(--muted);font-weight:700}
+    .wrap{display:grid;grid-template-columns:286px minmax(0,820px);gap:56px;max-width:1240px;margin:0 auto;padding:42px 28px 90px}
+    .sidebar{position:sticky;top:96px;align-self:start;border-right:1px solid var(--line);padding-right:22px;max-height:calc(100vh - 122px);overflow:auto}.side-eyebrow{font-size:12px;color:var(--brand);font-weight:900;margin-bottom:14px}.side-title{font-size:20px;font-weight:900;line-height:1.35;margin:0 0 20px;letter-spacing:-.6px}.toc{display:grid;gap:2px}.toc a{display:grid;grid-template-columns:34px 1fr;gap:10px;align-items:center;padding:9px 10px;border-radius:8px;color:#4b5563;font-size:14px;font-weight:700}.toc a:hover,.toc a.active{background:var(--soft);color:var(--brand-dark)}.toc-num{width:26px;height:26px;border-radius:7px;background:#f1f5f9;color:#64748b;display:grid;place-items:center;font-size:11px;font-weight:900}.toc a.active .toc-num{background:#fee2e8;color:var(--brand-dark)}
+    .article{min-width:0}.breadcrumb{display:flex;flex-wrap:wrap;gap:8px;align-items:center;color:#7b8494;font-size:13px;font-weight:700;margin-bottom:22px}.breadcrumb span:not(:last-child)::after{content:"/";margin-left:8px;color:#c2cad6}.article h1{font-size:clamp(34px,4vw,48px);line-height:1.14;letter-spacing:-1.8px;margin:0 0 12px}.updated{font-size:13px;color:#8a94a6;margin-bottom:28px}.lead{font-size:17px;color:#4b5563;margin:0 0 28px;word-break:keep-all}
+    .meta-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:28px 0 34px}.meta-card{border:1px solid var(--line);border-radius:var(--radius);padding:18px 18px;background:#fff}.meta-card strong{display:block;font-size:12px;color:var(--blue);font-weight:900;margin-bottom:6px}.meta-card p{margin:0;color:#4b5563;font-size:14px;word-break:keep-all}
+    .notice{border-left:4px solid var(--brand);background:#fff7f9;padding:18px 20px;border-radius:0 var(--radius) var(--radius) 0;margin:30px 0 40px}.notice strong{display:block;color:var(--brand-dark);font-size:14px;margin-bottom:4px}.notice p{margin:0;color:#4b5563;font-size:14px;word-break:keep-all}
+    .section-title{border-top:1px solid var(--line);padding-top:38px;margin-top:46px}.section-title h2{font-size:28px;line-height:1.25;letter-spacing:-1px;margin:0 0 10px}.section-title p{margin:0;color:var(--muted);font-size:15px;word-break:keep-all}
+    .step{scroll-margin-top:96px;margin:36px 0 58px}.step-head{display:grid;grid-template-columns:64px 1fr;gap:18px;align-items:start;margin-bottom:16px}.step-badge{width:52px;height:52px;border-radius:8px;background:#111827;color:#fff;display:grid;place-items:center;font-size:14px;font-weight:900}.step h3{font-size:25px;line-height:1.3;letter-spacing:-.8px;margin:0 0 5px}.step-sub{margin:0;color:var(--muted);font-size:15px}.step-copy{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px 0 18px}.copy-card{background:var(--soft);border:1px solid #edf1f6;border-radius:var(--radius);padding:14px 16px}.copy-card strong{display:block;font-size:12px;font-weight:900;color:#334155;margin-bottom:5px}.copy-card p{margin:0;color:#4b5563;font-size:14px;word-break:keep-all}
+    .screen-card{border:1px solid var(--line);border-radius:var(--radius);background:#fff;box-shadow:var(--shadow);overflow:hidden}.screen-top{display:flex;align-items:center;justify-content:space-between;gap:12px;border-bottom:1px solid var(--line);padding:12px 16px;background:#fbfcfe}.screen-top span{font-size:13px;font-weight:900;color:#475569}.screen-top em{font-style:normal;font-size:12px;color:#94a3b8}.screen-img-wrap{background:#eef2f7;padding:18px}.screen-img{display:block;width:100%;height:auto;border-radius:6px;background:#fff;border:1px solid #dbe3ee}.caption{font-size:13px;color:#64748b;margin:12px 2px 0;word-break:keep-all}.hotspot{display:inline-flex;align-items:center;gap:7px;margin-top:12px;background:var(--blue-soft);color:#244eb5;border-radius:999px;padding:7px 11px;font-size:12px;font-weight:900}.hotspot::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--blue)}
+    .helpbox{margin-top:56px;background:#111827;color:#fff;border-radius:var(--radius);padding:30px}.helpbox h2{margin:0 0 8px;font-size:24px;letter-spacing:-.6px}.helpbox p{margin:0;color:#d1d5db}.helpbox a{display:inline-block;margin-top:18px;background:#fff;color:#111827;border-radius:8px;padding:10px 16px;font-weight:900;font-size:14px}
+    .footer{border-top:1px solid var(--line);padding:28px clamp(20px,5vw,72px);color:#8a94a6;font-size:13px;text-align:center;background:#fbfcfe}
+    @media(max-width:980px){.wrap{display:block;padding:28px 18px 72px}.sidebar{position:relative;top:auto;border-right:0;border-bottom:1px solid var(--line);padding:0 0 20px;margin-bottom:30px;max-height:none}.toc{grid-template-columns:repeat(2,minmax(0,1fr))}.meta-grid,.step-copy{grid-template-columns:1fr}.step-head{grid-template-columns:52px 1fr}.topbar{height:62px}.topbar small{display:none}}
+    @media(max-width:620px){.toc{grid-template-columns:1fr}.article h1{font-size:32px}.section-title h2{font-size:24px}.step h3{font-size:21px}.screen-img-wrap{padding:10px}.helpbox{padding:24px 20px}}
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#top" aria-label="참빛북클럽 사용 가이드 처음으로"><span class="brand-mark">BOOK</span><span>참빛북클럽 사용 가이드</span></a>
+    <small id="stepCount">화면 캡처 기반 안내</small>
+  </header>
+  <div class="wrap" id="top">
+    <aside class="sidebar" aria-label="가이드 목차">
+      <div class="side-eyebrow">HELP CENTER</div>
+      <h2 class="side-title">서비스 사용 순서</h2>
+      <nav class="toc" id="toc"></nav>
+    </aside>
+    <article class="article">
+      <div class="breadcrumb"><span>고객센터</span><span>참빛북클럽</span><span>태블릿 학습</span></div>
+      <h1>참빛북클럽 태블릿 서비스 사용 가이드</h1>
+      <div class="updated">업데이트 날짜: 2026-07-08</div>
+      <p class="lead">영상 재생 없이도 따라 할 수 있도록 실제 서비스 화면 캡처와 단계별 설명을 함께 정리했습니다. 왼쪽 목차에서 필요한 단계를 선택하거나, 순서대로 내려가며 확인하세요.</p>
+      <div class="meta-grid">
+        <div class="meta-card"><strong>사용 가능 대상</strong><p>참빛북클럽 태블릿 서비스를 사용하는 학생, 학부모, 수업 운영자</p></div>
+        <div class="meta-card"><strong>가이드 구성</strong><p>로그인부터 리딩룸, 전자책 읽기, 러닝 활동, 결과 확인까지 전체 흐름을 안내합니다.</p></div>
+      </div>
+      <div class="notice"><strong>참고</strong><p>화면은 실제 서비스 캡처를 바탕으로 구성했습니다. 기관 설정, 레벨, 도서 상태에 따라 일부 버튼명이나 화면 순서는 다르게 보일 수 있습니다.</p></div>
+      <div class="section-title">
+        <h2>태블릿 학습 시작하기</h2>
+        <p>아래 STEP을 순서대로 따라가면 책 선택, 읽기, 러닝 학습, 결과 확인까지 한 번에 익힐 수 있습니다.</p>
+      </div>
+      <div id="steps"></div>
+      <section class="helpbox" aria-label="추가 도움말">
+        <h2>더 자세한 도움이 필요하신가요?</h2>
+        <p>기관 로그인 정보, 수업 계정, 학습 결과 확인 방식이 다를 경우 담당 선생님 또는 운영자에게 문의해 주세요.</p>
+        <a href="#top">가이드 처음으로 이동</a>
+      </section>
+    </article>
+  </div>
+  <footer class="footer">© 참빛북클럽. 본 문서는 화면 캡처 기반 서비스 사용 안내입니다.</footer>
+  <script src="chambit-tutorial-slides-data.js"></script>
+  <script>
+    (function(){
+      var data=window.CHAMBIT_TUTORIAL_DATA||{slides:[]};
+      var slides=data.slides||[];
+      var copy={
+        login:{action:'선생님이 알려준 기관코드와 아이디로 로그인하세요.',tip:'로그인 후 리딩룸 화면이 보이면 정상적으로 접속된 상태입니다.'},
+        library:{action:'내 레벨에 맞는 책을 고르고 표지나 제목을 선택하세요.',tip:'선택한 책의 상세 화면으로 이동하면 다음 단계로 넘어갈 수 있습니다.'},
+        reading:{action:'책 소개를 확인한 뒤 READING 버튼을 눌러 전자책 읽기를 시작하세요.',tip:'전자책 화면이 열리고 오디오/도구 버튼이 보이면 성공입니다.'},
+        learning_start:{action:'오디오를 들으며 책을 읽은 뒤 LEARNING 버튼으로 학습을 시작하세요.',tip:'첫 번째 러닝 활동 화면이 열리면 학습을 이어갈 준비가 된 것입니다.'},
+        word_preview:{action:'핵심 단어와 발음을 차례대로 확인하고 PASS를 누르세요.',tip:'모든 단어를 확인하면 다음 활동으로 넘어갈 수 있습니다.'},
+        word_match:{action:'왼쪽 단어와 오른쪽 뜻 또는 그림을 서로 맞춰보세요.',tip:'모든 단어를 맞추면 다음 활동으로 이동합니다.'},
+        word_choice:{action:'그림이나 문장을 보고 알맞은 단어를 선택하세요.',tip:'정답을 선택하고 다음 문제로 이동하면 성공입니다.'},
+        fill_blank:{action:'빈칸에 들어갈 알맞은 단어를 보기에서 골라 문장을 완성하세요.',tip:'빈칸 문장이 완성되면 다음 단계로 넘어갈 수 있습니다.'},
+        sentence_order:{action:'단어 카드를 올바른 순서로 배열해 문장을 완성하세요.',tip:'문장 순서가 맞게 배열되면 활동이 완료됩니다.'},
+        comprehension:{action:'책 내용을 떠올리며 4개 보기 중 정답을 선택하세요.',tip:'퀴즈를 제출하고 결과 화면으로 이동하면 성공입니다.'},
+        results:{action:'Average Score와 Point를 확인하고 부족한 활동은 다시 도전하세요.',tip:'활동별 정답/오답과 포인트를 확인하면 학습이 마무리됩니다.'},
+        resources:{action:'도서 상세 페이지에서 RESOURCES 버튼을 눌러 필요한 자료를 확인하세요.',tip:'워크시트, 북리포트, 단어카드 다운로드 위치를 알게 되면 성공입니다.'},
+        mymenu:{action:'내 메뉴에서 읽은 책 수, 포인트, 월별 독서량을 확인하세요.',tip:'나의 독서 기록과 개별 리포트 위치를 확인하면 됩니다.'}
+      };
+      function strip(v){var d=document.createElement('div');d.innerHTML=v||'';return d.textContent.trim();}
+      function cleanTitle(v){return String(v||'').replace(/^\d+\.\s*/,'').trim();}
+      function esc(v){return String(v||'').replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+      var toc=document.getElementById('toc');
+      var steps=document.getElementById('steps');
+      document.getElementById('stepCount').textContent=slides.length+'개 화면 캡처 기반 안내';
+      toc.innerHTML=slides.map(function(s,i){return '<a href="#step-'+esc(s.id)+'"><span class="toc-num">'+String(i+1).padStart(2,'0')+'</span><span>'+esc(cleanTitle(s.title))+'</span></a>';}).join('');
+      steps.innerHTML=slides.map(function(s,i){
+        var c=copy[s.id]||{};
+        var title=cleanTitle(s.title);
+        var desc=strip(s.description||s.subtitle);
+        var hotspot=s.hotspot&&s.hotspot.label?'<span class="hotspot">'+esc(s.hotspot.label)+'</span>':'';
+        return '<section class="step" id="step-'+esc(s.id)+'">'
+          +'<div class="step-head"><div class="step-badge">'+String(i+1).padStart(2,'0')+'</div><div><h3>'+esc(title)+'</h3><p class="step-sub">'+esc(s.subtitle||desc)+'</p></div></div>'
+          +'<div class="step-copy"><div class="copy-card"><strong>따라 하기</strong><p>'+esc(c.action||desc)+'</p></div><div class="copy-card"><strong>완료 확인</strong><p>'+esc(c.tip||'화면이 다음 단계로 이동하면 정상입니다.')+'</p></div></div>'
+          +'<figure class="screen-card"><div class="screen-top"><span>STEP '+String(i+1).padStart(2,'0')+' 화면</span><em>실제 서비스 캡처</em></div><div class="screen-img-wrap"><img class="screen-img" src="data:image/jpeg;base64,'+s.image+'" alt="'+esc(title)+' 화면 캡처" loading="lazy"><figcaption class="caption">'+esc(desc)+'</figcaption>'+hotspot+'</div></figure>'
+          +'</section>';
+      }).join('');
+      var links=Array.from(toc.querySelectorAll('a'));
+      var byId=links.map(function(a){return document.querySelector(a.getAttribute('href'));});
+      function mark(){var current=0;byId.forEach(function(sec,i){if(sec&&sec.getBoundingClientRect().top<160)current=i;});links.forEach(function(a,i){a.classList.toggle('active',i===current);});}
+      document.addEventListener('scroll',mark,{passive:true});mark();
+    })();
+  </script>
+</body>
+</html>
